@@ -1,7 +1,4 @@
-export const metadata = {
-	title: "Rage On Twitter",
-	description: "Free speech should not be rate limited.",
-};
+"use client";
 
 export default function RootLayout({ children }) {
 	return (
