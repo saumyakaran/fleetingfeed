@@ -23,9 +23,6 @@ export default () => {
 			setError(false);
 		}
 	};
-	useEffect(() => {
-		console.log(charsLeft);
-	}, [charsLeft]);
 
 	return (
 		<FormControl my={4} as="form" isInvalid={error}>
