@@ -13,7 +13,7 @@ export default function Wrapper() {
 			<ContextWrapper>
 				<Navbar />
 				<Box py={8} px={8} mx="auto" maxW="xl">
-					<Heading>Hello, world!</Heading>
+					<Heading>No rate limits. Posts disappear in 24 hours.</Heading>
 					<PostForm />
 					<Feed />
 				</Box>
