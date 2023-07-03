@@ -6,15 +6,22 @@ import {
 	Text,
 	Textarea,
 } from "@chakra-ui/react";
+import { useAuthInfo } from "@propelauth/react";
 import { isError, set } from "lodash";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const max_chars = 280;
 
 export default () => {
+	const {
+		user: { username },
+	} = useAuthInfo();
+
 	const [content, setContent] = useState("");
 	const [charsLeft, setCharsLeft] = useState(max_chars);
 	const [error, setError] = useState(false);
+
 	const handleChange = (e) => {
 		let input = e.target.value;
 		const _charsLeft = max_chars - input.length;
@@ -27,10 +34,18 @@ export default () => {
 		setContent(input);
 	};
 
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const res = await axios.post("/api/publish-post", { username, content });
+		console.log(res);
+		setContent("");
+	};
+
 	return (
 		<FormControl my={4} as="form" isInvalid={error}>
 			<Textarea
 				placeholder="Here is a sample placeholder"
+				value={content}
 				onChange={(e) => handleChange(e)}
 				maxLength={5000}
 			/>
@@ -51,9 +66,7 @@ export default () => {
 					colorScheme="twitter"
 					// type="submit"
 					isDisabled={error || charsLeft === 280}
-					onClick={() => {
-						console.log({ content });
-					}}
+					onClick={(e) => handleSubmit(e)}
 				>
 					Rage
 				</Button>
