@@ -3,6 +3,7 @@ import {
 	FormControl,
 	FormHelperText,
 	HStack,
+	Text,
 	Textarea,
 } from "@chakra-ui/react";
 import { isError, set } from "lodash";
@@ -11,6 +12,7 @@ import { useEffect, useState } from "react";
 const max_chars = 280;
 
 export default () => {
+	const [content, setContent] = useState("");
 	const [charsLeft, setCharsLeft] = useState(max_chars);
 	const [error, setError] = useState(false);
 	const handleChange = (e) => {
@@ -22,6 +24,7 @@ export default () => {
 		} else {
 			setError(false);
 		}
+		setContent(input);
 	};
 
 	return (
@@ -32,13 +35,25 @@ export default () => {
 				maxLength={5000}
 			/>
 			<HStack justifyContent="space-between" alignItems="start">
-				<FormHelperText>{280 - charsLeft}/280 characters</FormHelperText>
+				<FormHelperText>
+					<Text
+						as="span"
+						color={error && "red.500"}
+						fontWeight={error && "bold"}
+					>
+						{280 - charsLeft}
+					</Text>
+					/280 characters
+				</FormHelperText>
 				<Button
 					my={4}
 					px={8}
 					colorScheme="twitter"
-					type="submit"
-					isDisabled={error}
+					// type="submit"
+					isDisabled={error || charsLeft === 280}
+					onClick={() => {
+						console.log({ content });
+					}}
 				>
 					Rage
 				</Button>
