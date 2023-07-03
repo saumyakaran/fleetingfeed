@@ -16,11 +16,12 @@ export default ({ username, content }) => (
 		borderColor="gray.200"
 		rounded="none"
 		borderTop={0}
+		pb={4}
 	>
 		<CardBody>
 			<HStack alignItems="start">
 				<Avatar />
-				<VStack alignItems="start" spacing={0}>
+				<VStack alignItems="start" spacing={2}>
 					<Heading size="sm">{username}</Heading>
 					<Text>{content}</Text>
 				</VStack>

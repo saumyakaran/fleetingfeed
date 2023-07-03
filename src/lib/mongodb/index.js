@@ -1,7 +1,13 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const URI = process.env.MONGODB_URI;
-const options = {};
+const options = {
+	serverApi: {
+		version: ServerApiVersion.v1,
+		strict: true,
+		deprecationErrors: true,
+	},
+};
 
 if (!URI) {
 	throw new Error(
@@ -16,7 +22,7 @@ if (process.env.NODE_ENV !== "production") {
 		let client = new MongoClient(URI, options);
 		global._mongoClientPromise = client.connect();
 	}
-	clientPromise = global._mongoClientPromise;
+	clientPromise = await global._mongoClientPromise;
 } else {
 	clientPromise = await client.connect();
 }
