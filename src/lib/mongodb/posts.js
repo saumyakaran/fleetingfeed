@@ -17,7 +17,7 @@ init().catch(console.dir);
 export async function getPostsFromDB() {
 	try {
 		if (!posts) await init();
-		const res = await posts.find({}).toArray();
+		const res = await posts.find({}).sort({ createdAt: -1 }).toArray();
 		return res;
 	} catch (e) {
 		throw new Error("Could not get posts");
