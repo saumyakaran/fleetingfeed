@@ -1,5 +1,5 @@
 import {
-	Avatar,
+	Avatar as ChakraAvatar,
 	Box,
 	HStack,
 	Menu,
@@ -13,12 +13,16 @@ import {
 import { useAuthInfo, useLogoutFunction } from "@propelauth/react";
 import { FiLogOut } from "react-icons/fi";
 import { BiSupport } from "react-icons/bi";
+import Avatar, { genConfig } from "react-nice-avatar";
 
 export default () => {
 	const {
 		user: { username, email },
 	} = useAuthInfo();
 	const logoutFn = useLogoutFunction();
+
+	const config = genConfig(username);
+
 	return (
 		<Box py={2} px={8} maxW="8xl">
 			<HStack justifyContent="end">
@@ -32,7 +36,7 @@ export default () => {
 							px={4}
 							py={2}
 						>
-							<Avatar name={username} src="" />
+							<ChakraAvatar as={Avatar} name={username} />
 							<VStack alignItems="start" spacing={0}>
 								<Text>{username}</Text>
 								<Text fontSize="xs">{email}</Text>
