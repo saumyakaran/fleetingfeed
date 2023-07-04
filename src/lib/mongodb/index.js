@@ -2,6 +2,7 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const URI = process.env.MONGODB_URI;
 const options = {
+	useNewUrlParser: true,
 	serverApi: {
 		version: ServerApiVersion.v1,
 		strict: true,
