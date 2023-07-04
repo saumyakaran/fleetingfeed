@@ -9,11 +9,13 @@ import {
 	MenuList,
 	Text,
 	VStack,
+	Image as ChakraImage,
 } from "@chakra-ui/react";
 import { useAuthInfo, useLogoutFunction } from "@propelauth/react";
 import { FiLogOut } from "react-icons/fi";
 import { BiSupport } from "react-icons/bi";
 import Avatar, { genConfig } from "react-nice-avatar";
+import Image from "next/image";
 
 const Navbar = () => {
 	const {
@@ -24,7 +26,8 @@ const Navbar = () => {
 	const config = genConfig(username);
 
 	return (
-		<Box py={2} px={8} maxW="8xl">
+		<HStack py={2} px={8} maxW="8xl" justifyContent="space-between">
+			<Image src="/icon.png" alt="fleetingfeed" width={48} height={48} />
 			<HStack justifyContent="end">
 				<Menu>
 					<MenuButton as={Box} cursor="pointer">
@@ -63,7 +66,7 @@ const Navbar = () => {
 					</MenuList>
 				</Menu>
 			</HStack>
-		</Box>
+		</HStack>
 	);
 };
 

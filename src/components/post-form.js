@@ -23,6 +23,8 @@ const PostForm = () => {
 	const [charsLeft, setCharsLeft] = useState(max_chars);
 	const [error, setError] = useState(false);
 
+	const isDisabled = error || charsLeft === 280;
+
 	const handleChange = (e) => {
 		let input = e.target.value;
 		const _charsLeft = max_chars - input.length;
@@ -76,12 +78,14 @@ const PostForm = () => {
 				<Button
 					my={4}
 					px={8}
-					colorScheme="twitter"
-					// type="submit"
-					isDisabled={error || charsLeft === 280}
+					py={6}
+					bg="#0022ee"
+					color="white"
+					_hover={isDisabled ? {} : { bg: "#0011aa" }}
+					isDisabled={isDisabled}
 					onClick={(e) => handleSubmit(e)}
 				>
-					Rage
+					Publish Fleet
 				</Button>
 			</HStack>
 		</FormControl>
