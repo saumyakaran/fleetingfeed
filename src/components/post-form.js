@@ -5,11 +5,12 @@ import {
 	HStack,
 	Text,
 	Textarea,
+	useToast,
 } from "@chakra-ui/react";
 import { useAuthInfo } from "@propelauth/react";
-import { isError, set } from "lodash";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
+import sanitize from "mongo-sanitize";
 
 const max_chars = 280;
 
@@ -36,9 +37,20 @@ export default () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const res = await axios.post("/api/publish-post", { username, content });
-		console.log(res);
+		const clean = sanitize(content);
+		const res = await axios.post("/api/publish-post", {
+			username,
+			content: clean,
+		});
 		setContent("");
+	};
+
+	const handleKeyDown = (e) => {
+		// Check if the user pressed Cmd+Enter on Mac or Ctrl+Enter on Windows
+		if ((e.metaKey || e.ctrlKey) && (e.key === "Enter" || e.keyCode === 13)) {
+			e.preventDefault();
+			handleSubmit(e);
+		}
 	};
 
 	return (
@@ -48,6 +60,7 @@ export default () => {
 				value={content}
 				onChange={(e) => handleChange(e)}
 				maxLength={5000}
+				onKeyDown={handleKeyDown}
 			/>
 			<HStack justifyContent="space-between" alignItems="start">
 				<FormHelperText>
