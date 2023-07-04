@@ -14,7 +14,7 @@ import sanitize from "mongo-sanitize";
 
 const max_chars = 280;
 
-export default () => {
+const PostForm = () => {
 	const {
 		user: { username },
 	} = useAuthInfo();
@@ -87,3 +87,5 @@ export default () => {
 		</FormControl>
 	);
 };
+
+export default PostForm;

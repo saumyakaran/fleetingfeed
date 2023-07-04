@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import Avatar, { genConfig } from "react-nice-avatar";
 
-export default ({ username, content }) => {
+const Post = ({ username, content }) => {
 	const config = genConfig(username);
 
 	return (
@@ -34,3 +34,5 @@ export default ({ username, content }) => {
 		</Card>
 	);
 };
+
+export default Post;

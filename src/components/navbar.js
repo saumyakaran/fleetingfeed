@@ -15,7 +15,7 @@ import { FiLogOut } from "react-icons/fi";
 import { BiSupport } from "react-icons/bi";
 import Avatar, { genConfig } from "react-nice-avatar";
 
-export default () => {
+const Navbar = () => {
 	const {
 		user: { username, email },
 	} = useAuthInfo();
@@ -66,3 +66,5 @@ export default () => {
 		</Box>
 	);
 };
+
+export default Navbar;

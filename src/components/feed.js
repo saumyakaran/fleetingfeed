@@ -3,7 +3,7 @@ import Post from "./post";
 import _ from "lodash";
 import { useEffect, useState } from "react";
 
-export default () => {
+const Feed = () => {
 	const [posts, setPosts] = useState([]);
 	const [loadingPosts, setLoadingPosts] = useState(true);
 
@@ -32,3 +32,5 @@ export default () => {
 		</VStack>
 	);
 };
+
+export default Feed;
