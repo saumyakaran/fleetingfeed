@@ -9,7 +9,9 @@ const Feed = () => {
 
 	const getPosts = async () => {
 		const res = await fetch("/api/get-posts");
-		const _posts = await res.json();
+		const json = await res.json();
+		const _posts = json.posts;
+
 		setPosts(_posts);
 		setLoadingPosts(false);
 	};
