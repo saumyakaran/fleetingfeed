@@ -12,7 +12,7 @@ const Feed = () => {
 
 		if (res.status === 200) {
 			const json = await res.json();
-			const _posts = json.posts;
+			const _posts = json;
 
 			setPosts(_posts);
 		} else if (res.status === 500) {
