@@ -9,10 +9,16 @@ const Feed = () => {
 
 	const getPosts = async () => {
 		const res = await fetch("/api/get-posts");
-		const json = await res.json();
-		const _posts = json.posts;
 
-		setPosts(_posts);
+		if (res.status === 200) {
+			const json = await res.json();
+			const _posts = json.posts;
+
+			setPosts(_posts);
+		} else if (res.status === 500) {
+			console.error("Failed to fetch posts");
+		}
+
 		setLoadingPosts(false);
 	};
 
