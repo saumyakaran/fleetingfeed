@@ -24,7 +24,7 @@ const Post = ({ username, content }) => {
 		>
 			<CardBody>
 				<HStack alignItems="start">
-					<ChakraAvatar as={Avatar} />
+					<ChakraAvatar as={Avatar} {...config} />
 					<VStack alignItems="start" spacing={2}>
 						<Heading size="sm">{username}</Heading>
 						<Text>{content}</Text>

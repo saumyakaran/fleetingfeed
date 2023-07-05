@@ -39,7 +39,7 @@ const Navbar = () => {
 							px={4}
 							py={2}
 						>
-							<ChakraAvatar as={Avatar} name={username} />
+							<ChakraAvatar as={Avatar} name={username} {...config} />
 							<VStack alignItems="start" spacing={0}>
 								<Text>{username}</Text>
 								<Text fontSize="xs">{email}</Text>
